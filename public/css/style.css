@@ -2,20 +2,29 @@ body, html {
 	padding: 0;
 	margin: 0;
 }
-#home-background {
-	color: #FFF;
-  background-image: url(../imgs/background.jpeg);
+
+.header {
+  position: relative;
+  height: 400px;
+  background: url('/imgs/head.jpg') no-repeat center center;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-  height: 100vh;
 }
-.home-text {
-	position: relative;
-  top: 40%;
-  transform: translateY(-50%);
+
+.header-contents {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
   text-align: center;
 }
-.home-text h1 {
-	margin-top: 0;
+
+.header-contents h1 {
+  margin: 0;
+  font-size: 5em;
+}
+
+.header-contents h2 {
+  margin: 0;
 }
