@@ -34,13 +34,13 @@
 			    <div class="form-group">
 			    	<label for="status">Status</label>
 			    	<select class="form-control" name="status">
-						  <option value="published">Published</option>
-						  <option value="draft">Draft</option>
+						  <option value="published"<% if(post.status == 'published') { %> selected<% } %>>Published</option>
+						  <option value="draft"<% if(post.status == 'draft') { %> selected<% } %>>Draft</option>
 						</select>
 			    </div>
 			    <div class="form-group">
 			    	<label for="publishedDate">Date Published</label>
-			    	<input type="text" class="form-control" name="publishedDate" id="publishedDate" value="<% if (post.publishedDate) { %><%= post.publishedDate.toUTCString() %><% } else { %><%= post.publishedDate %><% } %>" readonly>
+			    	<input type="text" class="form-control" name="publishedDate" id="publishedDate" value="<% if (post.publishedDate) { %><%= post.publishedDate.toUTCString() %><% } else { %>Not yet published<% } %>" readonly>
 			    </div>
 			  </div>
 			  <div class="panel-footer">

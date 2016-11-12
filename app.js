@@ -11,6 +11,7 @@ var index = require('./routes/index');
 var admin = require('./routes/admin');
 
 var app = express();
+mongoose.Promise = global.Promise;
 mongoose.connect('localhost:27017/mattleachdigital');
 
 // view engine setup

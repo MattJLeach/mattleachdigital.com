@@ -5,15 +5,17 @@ var Post = require('../models/post');
 
 router.get('/', function(req, res) {
   res.render('admin/index', {
-  	title: 'Admin'
+  	title: 'Admin',
+  	nav: 'admin'
   });
 });
 
 // Show all posts
 router.get('/posts', function(req, res) {
-	Post.find({}, function(err, posts) {
+	Post.find().sort({ status: 1, updatedAt: -1, publishedDate: -1 }).exec(function(err, posts) {
 		res.render('admin/posts', {
 	  	title: 'Posts',
+	  	nav: 'posts',
 	  	posts: posts
 	  });
 	});
@@ -23,6 +25,7 @@ router.get('/posts', function(req, res) {
 router.get('/posts/add', function(req, res) {
 	res.render('admin/post-add', {
 		title: 'Add Post',
+		nav: 'posts',
 		js: ['/js/admin.js']
 	});
 });
@@ -60,6 +63,7 @@ router.get('/posts/:id/edit', function(req, res) {
 		console.log(post);
 		res.render('admin/post-edit', {
 			title: 'Edit Post',
+			nav: 'posts',
 			post: post
 		});
 	});

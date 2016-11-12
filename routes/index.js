@@ -12,12 +12,13 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/blog', function(req, res) {
-	Post.find({status: 'published'}, function(err, posts) {
+	Post.find({status: 'published'}).sort({ publishedDate: -1 }).exec(function(err, posts) {
 		if (err) {
 			console.error(err);
 		}
 		res.render('blog', {
 			title: 'Blog',
+			js: ['https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js'],
 			posts: posts
 		});
 	});
