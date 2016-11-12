@@ -9,6 +9,7 @@ router.get('/', function(req, res) {
   });
 });
 
+// Show all posts
 router.get('/posts', function(req, res) {
 	Post.find({}, function(err, posts) {
 		res.render('admin/posts', {
@@ -18,19 +19,66 @@ router.get('/posts', function(req, res) {
 	});
 });
 
+// Add new post
 router.get('/posts/add', function(req, res) {
-	res.render('admin/posts-add', {
-		title: 'Add Post'
+	res.render('admin/post-add', {
+		title: 'Add Post',
+		js: ['/js/admin.js']
 	});
 });
 
+// Create new post
 router.post('/posts/add', function(req, res) {
-	Post.create(req.body.post, function(err, post) {
+	var published;
+
+	if (req.body.status == 'published') {
+		published = Date.now();
+	}
+
+	var post = new Post({
+		title: req.body.title,
+		slug: req.body.slug,
+		status: req.body.status,
+		publishedDate: published,
+		body: req.body.body
+	});
+
+	post.save(function(err, post) {
 		if (err) {
 			console.error(err);
 		}
 		res.redirect('/admin/posts');
 	});
+});
+
+// Edit exisitng post
+router.get('/posts/:id/edit', function(req, res) {
+	Post.findById(req.params.id, function(err, post) {
+		if (err) {
+			console.error(err);
+		}
+		console.log(post);
+		res.render('admin/post-edit', {
+			title: 'Edit Post',
+			post: post
+		});
+	});
+});
+
+// Update existing post
+router.put('/posts/:id', function(req, res) {
+	console.log(req.body.publishedDate);
+	res.send('test');
+});
+
+// Delete existing post
+router.delete('/posts/:id', function(req, res) {
+	Post.findByIdAndRemove(req.params.id, function(err) {
+		if (err) {
+			console.log(err);
+		}
+		res.redirect('/admin/posts');
+	})
 });
 
 module.exports = router;

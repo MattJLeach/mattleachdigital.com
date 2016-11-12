@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/blog', function(req, res) {
-	Post.find({}, function(err, posts) {
+	Post.find({status: 'published'}, function(err, posts) {
 		if (err) {
 			console.error(err);
 		}
