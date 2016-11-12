@@ -1,0 +1,12 @@
+<% include ./includes/header %>
+
+<h1 class="text-center"><%= title %></h1>
+
+<% posts.forEach(function(post) { %>
+	<p><%= post.title %></p>
+	<p><%= post.slug %></p>
+	<p><%= post.status %></p>
+	<p><%- post.body %></p>
+<% }); %>
+
+<% include ./includes/footer %>

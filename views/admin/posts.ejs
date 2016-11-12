@@ -1,5 +1,24 @@
 <% include ./includes/header %>
 
-<h1><%= title %></h1>
+<h1 class="text-center"><%= title %></h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Slug</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% posts.forEach(function(post) { %>
+			<tr>
+				<td><%= post.title %></td>
+				<td><%= post.slug %></td>
+				<td><%= post.status %></td>
+			</tr>
+		<% }); %>
+	</tbody>
+</table>
 
 <% include ./includes/footer %>
