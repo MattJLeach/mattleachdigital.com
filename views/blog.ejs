@@ -4,7 +4,7 @@
 <article class="singlePost col-md-8 col-md-offset-2">
 	<a href="/blog/<%= post.slug %>"><h2><%= post.title %></h2></a>
 	<p><%= post.publishedDate.toDateString() %></p>
-	<p><%- post.body.substring(0, 300) %>...</p>
+	<p><%- post.body.substring(0, 300) %> ...</p>
 </article>
 <% }); %>
 

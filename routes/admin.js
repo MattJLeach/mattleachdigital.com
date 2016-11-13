@@ -54,6 +54,11 @@ router.post('/posts/add', function(req, res) {
 	});
 });
 
+// Preview post
+router.get('/posts/:id', function(req, res) {
+	// Complete this route once I have complated the single post view
+});
+
 // Edit exisitng post
 router.get('/posts/:id/edit', function(req, res) {
 	Post.findById(req.params.id, function(err, post) {
@@ -71,8 +76,29 @@ router.get('/posts/:id/edit', function(req, res) {
 
 // Update existing post
 router.put('/posts/:id', function(req, res) {
-	console.log(req.body.publishedDate);
-	res.send('test');
+	Post.findById(req.params.id, function(err, post) {
+		if (err) {
+			return res.send('Oh crap, there was an error');
+		}
+		if (!post) {
+			return res.send('Could not find post');
+		}
+		var published;
+		if (req.body.status == 'published' && req.body.publishedDate == 'Not yet published') {
+			published = Date.now();
+		}
+		var update = {$set: {
+			title: req.body.title,
+			slug: req.body.slug,
+			status: req.body.status,
+			publishedDate: published,
+			body: req.body.body
+		}}
+		Post.update({_id: req.params.id}, update, function(err, numAffected) {
+			console.log(numAffected);
+		});
+		res.redirect('/admin/posts');
+	});
 });
 
 // Delete existing post
