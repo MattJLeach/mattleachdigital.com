@@ -1,18 +1,15 @@
 body, html {
-	padding: 0;
-	margin: 0;
-}
+  padding: 0;
+  margin: 0; }
 
 body {
-  background: #f8f8f8;
-}
+  background: #f8f8f8; }
 
 .header {
   position: relative;
   height: 400px;
-  background: url('/imgs/head.jpg') no-repeat center center;
-  background-size: cover;
-}
+  background: url("/imgs/head.jpg") no-repeat center center;
+  background-size: cover; }
 
 .header-contents {
   position: absolute;
@@ -21,21 +18,17 @@ body {
   transform: translate(-50%, -50%);
   color: white;
   text-shadow: 2px 2px 4px #000000;
-  text-align: center;
-}
+  text-align: center; }
 
 .header-contents h1 {
   margin: 0;
-  font-size: 5em;
-}
+  font-size: 5em; }
 
 .header-contents h2 {
-  margin: 0;
-}
+  margin: 0; }
 
 article.singlePost {
   background: #fff;
   padding: 10px;
   border-radius: 5px;
-  margin-bottom: 10px;
-}
+  margin-bottom: 10px; }
