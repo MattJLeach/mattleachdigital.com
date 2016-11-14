@@ -1,0 +1,13 @@
+@mixin border-radius($radius) {
+	border-radius: $radius;
+	-moz-border-radius: $radius;
+	-webkit-border-radius: $radius;
+}
+
+@mixin linear-gradient($deg, $col1, $col2) {
+	background: $col1;
+	background: linear-gradient($deg, $col1, $col2);
+  background: -o-linear-gradient($deg, $col1, $col2);
+  background: -moz-linear-gradient($deg, $col1, $col2);
+  background: -webkit-linear-gradient($deg, $col1, $col2);
+}

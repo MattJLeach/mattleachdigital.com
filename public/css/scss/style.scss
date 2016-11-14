@@ -1,11 +1,17 @@
 // Import variables file
 @import 'variables';
 
-// Import typography
-@import 'typography';
+// Import mixins
+@import 'mixins';
 
 // Import global styles
 @import 'global';
+
+// Import typography
+@import 'typography';
+
+// Import navigation styles
+@import 'navigation';
 
 // Import header styles
 @import 'header';
