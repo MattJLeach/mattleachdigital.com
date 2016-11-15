@@ -1,7 +1,7 @@
 .header {
   position: relative;
   height: 400px;
-  background: url('/imgs/head.jpg') no-repeat center center;
+  background: url('/imgs/bkground2.jpg') no-repeat center center;
   background-size: cover;
 }
 
@@ -10,7 +10,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: $background-color;
   text-shadow: 2px 2px 4px #000000;
   text-align: center;
 }

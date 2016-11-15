@@ -11,3 +11,20 @@
   background: -moz-linear-gradient($deg, $col1, $col2);
   background: -webkit-linear-gradient($deg, $col1, $col2);
 }
+
+@mixin translate($deg1, $deg2) {
+	transform: translate($deg1, $deg2);
+	-o-transform: translate($deg1, $deg2);
+	-moz-transform: translate($deg1, $deg2);
+	-webkit-transform: translate($deg1, $deg2);
+}
+
+@mixin middle() {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+}

@@ -1,0 +1,16 @@
+.home-page {
+	width: 100%;
+	height: 100vh;
+	@include linear-gradient(141deg, $primary-color, $secondary-color)
+}
+
+.home-page-contents {
+	color: $background-color;
+	@include middle();
+	padding-bottom: 50px;
+	text-align: center;
+
+	h1, h2 {
+		margin: 0;
+	}
+}

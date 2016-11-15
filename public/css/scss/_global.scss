@@ -6,3 +6,34 @@ body, html {
 body {
   background: $background-color;
 }
+
+.clearfix {
+	clear: both;
+	overflow: hidden;
+}
+
+.container {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+/*
+ *
+ * Call to Action
+ *
+ */
+
+a.cta {
+	color: $background-color;
+	font-size: $font-base;
+	background: none;
+	border: 2px solid $background-color;
+	border-radius: 20px;
+	margin: 0 5px;
+	padding: 5px 10px;
+	text-decoration: none;
+
+	&:hover {
+		color: $selected-color;
+	}
+}

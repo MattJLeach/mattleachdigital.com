@@ -6,8 +6,7 @@ var Post = require('../models/post');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {
-  	title: 'Matt Leach',
-  	subTitle: 'Musings of a Javascript developer'
+  	title: 'Home'
   });
 });
 
