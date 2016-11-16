@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var nodemailer = require('nodemailer');
+var config = require('../config');
 
 var Post = require('../models/post');
 
@@ -48,7 +50,43 @@ router.get('/contact', function(req, res) {
 });
 
 router.post('/contact', function(req, res) {
-	res.send('form submitted');
+	var transporter = nodemailer.createTransport({
+		host: config.emailHost,
+		port: config.emailPort,
+		secure: false,
+		auth: {
+			user: config.emailUsername,
+			pass: config.emailPassword
+		},
+		tls: {
+			rejectUnauthorized: false
+		}
+	});
+
+	console.log(config.emailUsername);
+
+	var mailOptions = {
+		from: req.body.email,
+		to: config.emailUsername,
+		subject: 'Email from ' + req.body.name + ' recieved',
+		text: req.body.message
+	}
+
+	transporter.sendMail(mailOptions, function(err, info) {
+		if (err) {
+			console.log(err);
+			return res.render('contact-confirmation', {
+				title: 'Oops',
+				nav: 'contact',
+				message: 'There seems to have been an error'
+			});
+		}
+		res.render('contact-confirmation', {
+			title: 'Thank you',
+			nav: 'contact',
+			message: 'Thank you for getting in touch'
+		});
+	});
 });
 
 module.exports = router;
