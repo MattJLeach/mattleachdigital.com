@@ -16,6 +16,7 @@ body {
 .container {
 	max-width: 900px;
 	margin: 0 auto;
+	padding: 2px 5px;
 	overflow: hidden;
 }
 
@@ -25,7 +26,7 @@ body {
  *
  */
 
-a.cta {
+a.cta, button.cta {
 	font-size: $font-base;
 	background: none;
 	border-radius: 20px;

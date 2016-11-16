@@ -9,26 +9,37 @@
 </div>
 
 <div class="container">
-	<form>
-		<div class="form-item half-width left">
-			<label for="name">Name</label>
-			<input type="text" name="name">
-		</div>
-		<div class="form-item half-width right">
-			<label for="email">Email</label>
-			<input type="text" name="email">
-		</div>
-		<div class="form-item half-width left">
-			<label for="phone">Phone</label>
-			<input type="text" name="phone">
-		</div>
-		<div class="form-item half-width right">
-			<label for="reason">Reason for contact</label>
-			<input type="text" name="reason">
+	<form action="/contact" method="POST">
+		<div class="clearfix">
+			<div class="form-item half-width left">
+				<label for="name">Name</label>
+				<input type="text" name="name" required>
+			</div>
+			<div class="form-item half-width right">
+				<label for="email">Email</label>
+				<input type="email" name="email" required>
+			</div>
+			<div class="form-item half-width left">
+				<label for="phone">Phone</label>
+				<input type="text" name="phone">
+			</div>
+			<div class="form-item half-width right">
+				<label for="reason">How did you hear about me?</label>
+				<select name="reason">
+					<option value="">Select an option</option>
+					<option value="referral">Personal Referral</option>
+					<option value="linkedin">Linkedin</option>
+					<option value="google">Google</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
 		</div>
 		<div class="form-item">
 			<label for="message">Message</label>
-			<textarea name="message" rows="20"></textarea>
+			<textarea name="message" rows="20" required></textarea>
+		</div>
+		<div class="form-button">
+			<button type="submit" class="cta dark">Submit</button>
 		</div>
 	</form>
 </div>

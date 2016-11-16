@@ -1,23 +1,55 @@
-.form-item {
-	label {
-		display: block;
-	}
+form {
+	.form-item {
+		margin: 10px 0;
 
-	input, textarea {
-		width: 100%;
-		padding: 9px;
-		box-sizing: border-box;
-	}
-
-	&.half-width {
-		width: 49%;
-		
-		&.left {
-			float: left;
+		label {
+			display: block;
 		}
 
-		&.right {
-			float: right;
+		input, textarea {
+			width: 100%;
+			padding: 12px;
+			box-sizing: border-box;
+			font-size: 1em;
+		}
+
+		select {
+			appearance: none;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			padding: 12px;
+			width: 100%;
+			box-sizing: border-box;
+			font-size: 1em;
+		}
+
+		&.half-width {
+			width: 49%;
+			
+			&.left {
+				float: left;
+			}
+
+			&.right {
+				float: right;
+			}
 		}
 	}
+
+	.form-button {
+		text-align: center;
+	}
+}
+
+@media (max-width: 650px) {
+	form {
+		.form-item {
+			&.half-width {
+				width: 100%;
+				&.left, &.right {
+					float: none;
+				}
+			}
+		}
+	} 
 }
