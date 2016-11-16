@@ -1,7 +1,13 @@
+// Class to disable scrolling by hiding overflow
+.disable-scroll {
+	overflow: hidden;
+}
+
 nav.site-nav {
 	position: absolute;
 	top: 25px;
 	right: 50px;
+	z-index: 100;
 
 	#navButton {
 		display: none;
@@ -35,7 +41,7 @@ nav.site-nav {
 	nav.site-nav {
 		top: 0;
 		right: 0;
-		height: 100vh;
+		height: 100%;
 		background: $selected-color;
 		z-index: 5;
 		width: 0;

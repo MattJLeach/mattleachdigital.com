@@ -1,0 +1,69 @@
+// Home page styles
+
+.home-page {
+	width: 100%;
+	height: 100%;
+	@include linear-gradient(141deg, $primary-color, $secondary-color);
+}
+
+.home-page-contents {
+	color: $background-color;
+	@include middle();
+	padding-bottom: 50px;
+	text-align: center;
+	width: 95%;
+
+	h1 {
+		margin: 0;
+	}
+
+	p {
+		margin-top: 0;
+	}
+}
+
+// Blog page styles
+
+.blog-page {
+	position: relative;
+	width: 100%;
+	height: 250px;
+	@include linear-gradient(141deg, $primary-color, $secondary-color);
+	margin-bottom: 15px;
+
+	.blog-page-header {
+		text-align: center;
+		color: $background-color;
+		@include middle();
+		width: 95%;
+
+		h1, p {
+			margin: 0;
+		}
+	}
+}
+
+article.singlePost {
+	@include border-radius(5px);
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+
+  a {
+  	text-decoration: none;
+
+  	h2 {
+  		color: $selected-color;
+  		margin: 5px 0;
+  	}
+
+  	&:hover h2 {
+  		color: $primary-color;
+  	}
+  }
+
+  .post-date {
+  	margin-top: 0;
+
+  }
+}

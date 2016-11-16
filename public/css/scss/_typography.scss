@@ -38,3 +38,60 @@ small {
 .text-center {
 	text-align: center;
 }
+
+@media (max-width: 850px) {
+	$scale1: 0.9;
+	h4 {
+		font-size: $font-base * $ratio * $scale1;
+	}
+
+	h3 {
+		font-size: $font-base * $ratio * $ratio * $scale1;
+	}
+
+	h2 {
+		font-size: $font-base * $ratio * $ratio * $ratio * $scale1;
+	}
+
+	h1 {
+		font-size: $font-base * $ratio * $ratio * $ratio * $ratio * $scale1;
+	}
+}
+
+@media (max-width: 600px) {
+	$scale2: 0.79;
+	h4 {
+		font-size: $font-base * $ratio * $scale2;
+	}
+
+	h3 {
+		font-size: $font-base * $ratio * $ratio * $scale2;
+	}
+
+	h2 {
+		font-size: $font-base * $ratio * $ratio * $ratio * $scale2;
+	}
+
+	h1 {
+		font-size: $font-base * $ratio * $ratio * $ratio * $ratio * $scale2;
+	}
+}
+
+@media (max-width: 500px) {
+	$scale3: 0.68;
+	h4 {
+		font-size: $font-base * $ratio * $scale3;
+	}
+
+	h3 {
+		font-size: $font-base * $ratio * $ratio * $scale3;
+	}
+
+	h2 {
+		font-size: $font-base * $ratio * $ratio * $ratio * $scale3;
+	}
+
+	h1 {
+		font-size: $font-base * $ratio * $ratio * $ratio * $ratio * $scale3;
+	}
+}

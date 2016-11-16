@@ -12,12 +12,12 @@
     	<% }
     } %>
   </head>
-  <body>
+  <body class="site">
     <nav id="site-nav" class="site-nav">
       <i id="navButton" class="fa fa-bars fa-2x" aria-hidden="true" onclick="toggleNav()"></i>
       <ul>
-        <li><a href="/" class="current">Home</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="/"<% if (nav == 'home') { %> class="current"<% } %>>Home</a></li>
+        <li><a href="/blog"<% if (nav == 'blog') { %> class="current"<% } %>>Blog</a></li>
+        <li><a href="/contact"<% if (nav == 'contact') { %> class="current"<% } %>>Contact</a></li>
       </ul>
     </nav>

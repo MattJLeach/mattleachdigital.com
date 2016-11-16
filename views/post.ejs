@@ -1,0 +1,18 @@
+<% include ./includes/header %>
+
+<div class="blog-page">
+	<div class="container">
+		<div class="blog-page-header">
+			<h1><%= post.title %></h1>
+			<p><em><%= post.publishedDate.toDateString() %></em></p>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<article class="singlePost">
+		<p><%- post.body %></p>
+	</article>
+</div>
+
+<% include ./includes/footer %>

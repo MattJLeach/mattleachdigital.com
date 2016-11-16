@@ -1,11 +1,22 @@
 <% include ./includes/header %>
 
-<% posts.forEach(function(post) { %>
-<article class="singlePost col-md-10 col-md-offset-1">
-	<a href="/blog/<%= post.slug %>"><h2><%= post.title %></h2></a>
-	<p><%= post.publishedDate.toDateString() %></p>
-	<p><%- post.body.substring(0, 300) %> ...</p>
-</article>
-<% }); %>
+<div class="blog-page">
+	<div class="container">
+		<div class="blog-page-header">
+			<h1>Blog</h1>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<% posts.forEach(function(post) { %>
+	<article class="singlePost">
+		<a href="/blog/<%= post.slug %>"><h2><%= post.title %></h2></a>
+		<p class="post-date"><%= post.publishedDate.toDateString() %></p>
+		<p><%- post.body.substring(0, 300) %> ...</p>
+		<a class="cta dark" href="/blog/<%= post.slug %>">Read full post</a>
+	</article>
+	<% }); %>
+</div>
 
 <% include ./includes/footer %>

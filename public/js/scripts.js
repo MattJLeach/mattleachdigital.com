@@ -4,9 +4,11 @@ function toggleNav() {
 
 	if (x.className === 'site-nav') {
 		x.className += ' open';
-		b.className = 'fa fa-times fa-2x'
+		b.className = 'fa fa-times fa-2x';
+		document.body.className += ' disable-scroll';
 	} else {
 		x.className = 'site-nav';
-		b.className = 'fa fa-bars fa-2x'
+		b.className = 'fa fa-bars fa-2x';
+		document.body.className = 'site';
 	}
 }

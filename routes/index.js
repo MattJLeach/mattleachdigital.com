@@ -6,7 +6,8 @@ var Post = require('../models/post');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {
-  	title: 'Home'
+  	title: 'Home',
+  	nav: 'home'
   });
 });
 
@@ -17,9 +18,32 @@ router.get('/blog', function(req, res) {
 		}
 		res.render('blog', {
 			title: 'Blog',
-			js: ['https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js'],
+			nav: 'blog',
 			posts: posts
 		});
+	});
+});
+
+router.get('/blog/:slug', function(req, res) {
+	Post.findOne({slug: req.params.slug}, function(err, post) {
+		if (err) {
+			return console.error(err);
+		}
+		if (!post) {
+			return console.log('No post found!')
+		}
+		res.render('post', {
+			title: post.title,
+			nav: 'blog',
+			post: post
+		});
+	});
+});
+
+router.get('/contact', function(req, res) {
+	res.render('contact', {
+		title: 'Contact Me',
+		nav: 'contact'
 	});
 });
 
