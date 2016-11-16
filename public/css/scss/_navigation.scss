@@ -2,6 +2,11 @@ nav.site-nav {
 	position: absolute;
 	top: 25px;
 	right: 50px;
+
+	#navButton {
+		display: none;
+	}
+
 	ul {
 		list-style: none;
 
@@ -20,6 +25,67 @@ nav.site-nav {
 
 				&:active, &.current {
 					color: $selected-color;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	nav.site-nav {
+		top: 0;
+		right: 0;
+		height: 100vh;
+		background: $selected-color;
+		z-index: 5;
+		width: 0;
+		transition: 0.5s;
+
+		#navButton {
+			display: block;
+			position: fixed;
+			top: 20px;
+			right: 20px;
+			color: $background-color;
+			background: none;
+			border: none;
+			z-index: 10;
+
+			&:hover {
+				color: $selected-color;
+			}
+		}
+
+		ul {
+			margin: 0;
+			padding: 70px 0 0 0;
+
+			li {
+				display: block;
+				padding: 20px;
+				text-align: center;
+
+				a {
+
+					&:hover {
+						border-bottom: 2px solid $primary-color;
+					}
+
+					&:active, &.current {
+						color: $primary-color;
+					}
+				}
+			}
+		}
+
+		&.open {
+			width: 50%;
+
+			#navButton {
+				color: $background-color;
+
+				&:hover {
+					color: $primary-color;
 				}
 			}
 		}
