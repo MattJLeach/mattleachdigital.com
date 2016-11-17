@@ -63,8 +63,6 @@ router.post('/contact', function(req, res) {
 		}
 	});
 
-	console.log(config.emailUsername);
-
 	var mailOptions = {
 		from: req.body.email,
 		to: config.emailUsername,
