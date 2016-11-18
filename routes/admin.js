@@ -10,6 +10,12 @@ router.get('/', function(req, res) {
   });
 });
 
+router.get('/login', function(req, res) {
+	res.render('admin/login', {
+		title: 'Login'
+	});
+});
+
 // Show all posts
 router.get('/posts', function(req, res) {
 	Post.find().sort({ status: 1, updatedAt: -1, publishedDate: -1 }).exec(function(err, posts) {

@@ -43,6 +43,12 @@
 	}
 }
 
+@media (max-width: 500px) {
+	.blog-page {
+		height: 150px;
+	}
+}
+
 article.singlePost {
 	@include border-radius(5px);
   background: #fff;
@@ -66,4 +72,83 @@ article.singlePost {
   	margin-top: 0;
 
   }
+}
+
+// Portfolio page styles
+
+article.singlePortfolio {
+	@include border-radius(5px);
+  background: #fff;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: center;
+
+  .portfolio-title {
+  	color: $primary-color;
+  }
+
+  .portfolio-item {
+  	overflow: hidden;
+
+  	.portfolio-details {
+	  	padding-bottom: 15px;
+
+	  	h3 {
+	  		margin-bottom: 5px;
+	  	}
+
+	  	&.left {
+
+	  	}
+
+	  	&.right {
+
+	  	}
+	  }
+
+	  .portfolio-image img {
+	  	max-width: 100%;
+	  }
+  }
+}
+
+@media (min-width: 800px) {
+	article.singlePortfolio {
+		
+	  .portfolio-title {
+	  
+	  }
+
+	  .portfolio-item {
+	  	
+	  	.portfolio-details {
+		  	width: 43%;
+
+		  	&.left {
+		  		float: left;
+		  	}
+
+		  	&.right {
+		  		float: right;
+		  	}
+		  }
+
+		  .portfolio-image {
+		  	width: 55%;
+
+		  	&.left {
+		  		float: left;
+		  	}
+
+		  	&.right {
+		  		float: right;
+		  	}
+		  }
+	  }
+
+	  .portfolio-testimonial {
+	  	max-width: 750px;
+	  	margin: 0 auto;
+	  }
+	}
 }

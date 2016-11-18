@@ -6,11 +6,18 @@ var config = require('../config');
 var Post = require('../models/post');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.render('index', {
   	title: 'Home',
   	nav: 'home'
   });
+});
+
+router.get('/portfolio', function(req, res) {
+	res.render('portfolio', {
+		title: 'Portfolio',
+		nav: 'portfolio'
+	});
 });
 
 router.get('/blog', function(req, res) {
