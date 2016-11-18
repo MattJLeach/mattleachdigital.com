@@ -13,8 +13,9 @@
     } %>
   </head>
   <body class="site">
+    <i id="nav-button" class="fa fa-bars fa-2x" aria-hidden="true" onclick="toggleNav()"></i>
     <nav id="site-nav" class="site-nav">
-      <i id="navButton" class="fa fa-bars fa-2x" aria-hidden="true" onclick="toggleNav()"></i>
+      
       <ul>
         <li><a href="/"<% if (nav == 'home') { %> class="current"<% } %>>Home</a></li>
         <li><a href="/blog"<% if (nav == 'blog') { %> class="current"<% } %>>Blog</a></li>
