@@ -7,11 +7,16 @@
     "sass": "node-sass -w public/css/scss/style.scss public/css/style.css --output-style compressed"
   },
   "dependencies": {
+    "bcryptjs": "^2.3.0",
     "body-parser": "~1.15.2",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "ejs": "^2.5.2",
     "express": "~4.14.0",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.14.2",
+    "express-validator": "^2.21.0",
     "method-override": "^2.3.6",
     "mongoose": "^4.6.7",
     "mongoose-unique-validator": "^1.0.2",

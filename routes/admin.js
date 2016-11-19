@@ -1,13 +1,92 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var bcrypt = require('bcryptjs');
 
 var Post = require('../models/post');
+var User = require('../models/user');
 
-router.get('/', function(req, res) {
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+  	User.findOne({ username: username }, function(err, user) {
+  		console.log(user);
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      bcrypt.compare(password, user.password, function(err, res) {
+      	if (err) {
+      		console.log('There was an error');
+      	} 
+      	if (!res) {
+      		console.log('No result');
+      		return done(null, false, { message: 'Incorrect password'});
+      	}
+      	return done(null, user);
+      });
+    });
+  }
+));
+
+router.get('/', ensureAuthenticated, function(req, res) {
   res.render('admin/index', {
   	title: 'Admin',
   	nav: 'admin'
   });
+});
+
+router.get('/setup', function(req, res) {
+	User.findOne(function(err, doc) {
+		if (doc) {
+			return res.redirect('/admin/login');
+		}
+		res.render('admin/setup');
+	});
+});
+
+router.post('/setup', function(req, res) {
+	var username = req.body.username;
+	var email = req.body.email;
+	var password = req.body.password;
+	var password2 = req.body.password2;
+
+	// Validation
+	req.checkBody('username', 'Username is required').notEmpty();
+	req.checkBody('email', 'Email is required').notEmpty();
+	req.checkBody('email', 'Email is not valid').isEmail();
+	req.checkBody('password', 'Password is required').notEmpty();
+	req.checkBody('password2', 'Passwords do not match').equals(password);
+	
+	var errors = req.validationErrors();
+
+	if (errors) {
+		return res.render('admin/setup', {
+			errors: errors
+		});
+	}
+	var newUser = new User({
+		username: username,
+		password: password,
+		email: email
+	});
+
+	bcrypt.genSalt(10, function(err, salt) {
+		bcrypt.hash(newUser.password, salt, function(err, hash) {
+			newUser.password = hash;
+			newUser.save();
+		});
+	});
+	
+	res.redirect('/admin/login');
 });
 
 router.get('/login', function(req, res) {
@@ -15,6 +94,12 @@ router.get('/login', function(req, res) {
 		title: 'Login'
 	});
 });
+
+router.post('/login',
+	passport.authenticate('local', { failureRedirect: '/admin/login' }),
+	function(req, res) {
+		res.redirect('/admin');
+	});
 
 // Show all posts
 router.get('/posts', function(req, res) {
@@ -90,7 +175,9 @@ router.put('/posts/:id', function(req, res) {
 			return res.send('Could not find post');
 		}
 		var published;
-		if (req.body.status == 'published' && req.body.publishedDate == 'Not yet published') {
+		if (req.body.publishedDate != 'Not yet published') {
+			published = post.publishedDate;
+		} else if (req.body.status == 'published' && req.body.publishedDate == 'Not yet published') {
 			published = Date.now();
 		}
 		var update = {$set: {
@@ -116,5 +203,17 @@ router.delete('/posts/:id', function(req, res) {
 		res.redirect('/admin/posts');
 	})
 });
+
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+function ensureAuthenticated(req, res, next) {
+  if(req.isAuthenticated()) {
+		return next();
+	}
+	res.redirect('/admin/login');
+}
 
 module.exports = router;
