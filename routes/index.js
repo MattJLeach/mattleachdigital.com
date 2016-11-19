@@ -25,6 +25,9 @@ router.get('/blog', function(req, res) {
 		if (err) {
 			console.error(err);
 		}
+		if (posts.length === 0) {
+			posts = null;
+		}
 		res.render('blog', {
 			title: 'Blog',
 			nav: 'blog',

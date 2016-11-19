@@ -9,14 +9,18 @@
 </div>
 
 <div class="container">
-	<% posts.forEach(function(post) { %>
+	<% if (locals.posts) { posts.forEach(function(post) { %>
 	<article class="singlePost">
 		<a href="/blog/<%= post.slug %>"><h2><%= post.title %></h2></a>
 		<p class="post-date"><%= post.publishedDate.toDateString() %></p>
 		<p><%- post.body.substring(0, 300) %> ...</p>
 		<a class="cta dark" href="/blog/<%= post.slug %>">Read full post</a>
 	</article>
-	<% }); %>
+	<% })}; 
+	if (!locals.posts) { %>
+	<h3 class="text-center">No Posts Yet</h3>
+	<p class="text-center">Do not fear, this is my new blog site (built from scratch on NodeJS) and I will be blogging soon.</p>
+	<% } %>
 </div>
 
 <% include ./includes/footer %>
