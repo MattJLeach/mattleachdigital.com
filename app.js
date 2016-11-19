@@ -11,6 +11,7 @@ var expressValidator = require('express-validator');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
+var config = require('./config');
 
 var index = require('./routes/index');
 var admin = require('./routes/admin');
@@ -18,7 +19,7 @@ var admin = require('./routes/admin');
 var app = express();
 
 mongoose.Promise = global.Promise;
-mongoose.connect('localhost:27017/mattleachdigital');
+mongoose.connect(config.db);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
