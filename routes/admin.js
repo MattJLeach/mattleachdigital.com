@@ -102,7 +102,7 @@ router.post('/login',
 	});
 
 // Show all posts
-router.get('/posts', function(req, res) {
+router.get('/posts', ensureAuthenticated, function(req, res) {
 	Post.find().sort({ status: 1, updatedAt: -1, publishedDate: -1 }).exec(function(err, posts) {
 		res.render('admin/posts', {
 	  	title: 'Posts',
@@ -113,7 +113,7 @@ router.get('/posts', function(req, res) {
 });
 
 // Add new post
-router.get('/posts/add', function(req, res) {
+router.get('/posts/add', ensureAuthenticated, function(req, res) {
 	res.render('admin/post-add', {
 		title: 'Add Post',
 		nav: 'posts',
@@ -122,7 +122,7 @@ router.get('/posts/add', function(req, res) {
 });
 
 // Create new post
-router.post('/posts/add', function(req, res) {
+router.post('/posts/add', ensureAuthenticated, function(req, res) {
 	var published;
 
 	if (req.body.status == 'published') {
@@ -146,12 +146,12 @@ router.post('/posts/add', function(req, res) {
 });
 
 // Preview post
-router.get('/posts/:id', function(req, res) {
+router.get('/posts/:id', ensureAuthenticated, function(req, res) {
 	// Complete this route once I have complated the single post view
 });
 
 // Edit exisitng post
-router.get('/posts/:id/edit', function(req, res) {
+router.get('/posts/:id/edit', ensureAuthenticated, function(req, res) {
 	Post.findById(req.params.id, function(err, post) {
 		if (err) {
 			console.error(err);
@@ -166,7 +166,7 @@ router.get('/posts/:id/edit', function(req, res) {
 });
 
 // Update existing post
-router.put('/posts/:id', function(req, res) {
+router.put('/posts/:id', ensureAuthenticated, function(req, res) {
 	Post.findById(req.params.id, function(err, post) {
 		if (err) {
 			return res.send('Oh crap, there was an error');
@@ -195,7 +195,7 @@ router.put('/posts/:id', function(req, res) {
 });
 
 // Delete existing post
-router.delete('/posts/:id', function(req, res) {
+router.delete('/posts/:id', ensureAuthenticated, function(req, res) {
 	Post.findByIdAndRemove(req.params.id, function(err) {
 		if (err) {
 			console.log(err);
@@ -213,7 +213,7 @@ function ensureAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
 		return next();
 	}
-	res.redirect('/admin/login');
+	res.redirect('/');
 }
 
 module.exports = router;
