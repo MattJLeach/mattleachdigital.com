@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "start-prod": "node ./bin/www > stdout.txt 2> stderr.txt &",
     "sass": "node-sass -w public/css/scss/style.scss public/css/style.css --output-style compressed"
   },
   "dependencies": {
