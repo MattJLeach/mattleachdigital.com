@@ -60,6 +60,12 @@ router.get('/contact', function(req, res) {
 });
 
 router.post('/contact', function(req, res) {
+	res.render('contact-confirmation', {
+		title: 'Thank you',
+		nav: 'contact',
+		message: 'Thank you for getting in touch'
+	});
+
 	var transporter = nodemailer.createTransport({
 		host: config.emailHost,
 		port: config.emailPort,
@@ -77,23 +83,18 @@ router.post('/contact', function(req, res) {
 		from: req.body.email,
 		to: config.emailUsername,
 		subject: 'Email from ' + req.body.name + ' recieved',
-		text: req.body.message
+		html: '<p><strong>New contact form</strong></p><p>Name: ' + req.body.name + '</p>' + '<p>Email: ' + req.body.email + '</p><p>Phone: ' + req.body.phone + '</p><p>Reason: ' + req.body.reason + '</p><p>Message:<br />' + req.body.message
+	}
+
+	var replyOptions = {
+		from: config.emailUsername,
+		to: req.body.email,
+		subject: 'Thank you for getting in touch',
+		html: '<p>Thank you for getting in touch with me</p><p>Kind Regards<br />Matt Leach'
 	}
 
 	transporter.sendMail(mailOptions, function(err, info) {
-		if (err) {
-			console.log(err);
-			return res.render('contact-confirmation', {
-				title: 'Oops',
-				nav: 'contact',
-				message: 'There seems to have been an error'
-			});
-		}
-		res.render('contact-confirmation', {
-			title: 'Thank you',
-			nav: 'contact',
-			message: 'Thank you for getting in touch'
-		});
+		transporter.sendMail(replyOptions, function(err, info) {});
 	});
 });
 
