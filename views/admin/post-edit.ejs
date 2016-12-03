@@ -20,7 +20,7 @@
 				  </div>
 				  <div class="form-group">
 				  	<label for="body">Body</label>
-				  	<textarea class="form-control" name="body" rows="15"><%- post.body %></textarea>
+				  	<textarea id="body" class="form-control" name="body" rows="30"><%- post.body %></textarea>
 				  </div>
 			  </div>
 			</div>
@@ -50,5 +50,11 @@
 		</div>
 	</form>
 </div>
+
+<script>
+  CKEDITOR.replace( 'body', {
+    "extraPlugins": "imagebrowser"
+  });
+</script>
 
 <% include ./includes/footer %>
