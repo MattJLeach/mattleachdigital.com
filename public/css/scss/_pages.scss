@@ -1,4 +1,39 @@
+// Section Styles
+
+.section {
+	.third {
+		width: 33.3333%;
+		float: left;
+		.fa {
+			color: $primary-color;
+			font-size: 3em;
+		}
+	}
+}
+
 // Home page styles
+
+.about-me {
+	clear: both;
+	overflow: hidden;
+
+	img {
+		float: left;
+		width: 25%;
+		border-radius: 50%;
+		-moz-border-radius: 50%;
+		-webkit-border-radius: 50%;
+		border: 1px solid black;
+	}
+
+	h2, h3 {
+		float: right;
+		width: 70%;
+		padding: 0;
+		margin: 0;
+
+	}
+}
 
 .home-page {
 	width: 100%;
